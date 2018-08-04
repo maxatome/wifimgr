@@ -65,6 +65,10 @@ msgstr "メモリ不足"
 msgid "Add Cloaked Network"
 msgstr "シークレットネットワークの追加"
 
+#: wifimgr-gtk.c:1410
+msgid "Show all Networks"
+msgstr ""
+
 #: wifimgr-gtk.c:326
 msgid "SSID:"
 msgstr "SSID:"

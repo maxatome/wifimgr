@@ -57,6 +57,7 @@ int			gui_changes;
 GtkWidget *		gui_up_down_icon;
 struct wifi_net *	gui_new_net;
 gpointer *		gui_new_net_table;
+int			gui_show_all_networks = 0;
 
 static GtkWidget *	gui_fill_network_table(GtkWidget * x, gpointer * gp);
 
@@ -76,6 +77,15 @@ gui_process_check_button(GtkWidget * w, gpointer * gp) {
 
 	*((int *) gp) = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(w));
 	gui_changes++;
+}
+
+/*
+** handle "Show all Networks" check button
+*/
+static void
+gui_process_check_button_show_all_networks(GtkWidget * w, gpointer * gp) {
+	gui_show_all_networks = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(w));
+	gui_fill_network_table(NULL, gp);
 }
 
 /*
@@ -1089,6 +1099,9 @@ gui_fill_network_table(GtkWidget * x, gpointer * gp) {
 		associated_net = NULL;
 
 	for (net = nets; net; net = net->wn_next) {
+		if (!gui_show_all_networks && net->wn_bars <= 0)
+			continue;
+
 		col = 0;
 
 		w = gtk_check_button_new();
@@ -1393,6 +1406,13 @@ gui_loop() {
 	w = gtk_button_new_with_label(gettext("Rescan Networks"));
 	g_signal_connect(GTK_OBJECT(w), "clicked", GTK_SIGNAL_FUNC(gui_rescan),
 	    (gpointer) &table);
+
+	w = gtk_check_button_new_with_label("Show all Networks");
+	if (gui_show_all_networks)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
+	g_signal_connect(G_OBJECT(w), "toggled", G_CALLBACK(gui_process_check_button_show_all_networks),
+	    (gpointer) &table);
+
 	gtk_box_pack_start(GTK_BOX(bottom_buttons), w, FALSE, FALSE, 5);
 	w = gtk_button_new_with_label(gettext("Close"));
 	g_signal_connect(GTK_OBJECT(w), "clicked", GTK_SIGNAL_FUNC(gui_exit), NULL);

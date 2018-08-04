@@ -65,6 +65,10 @@ msgstr ""
 msgid "Add Cloaked Network"
 msgstr "Verstecktes Netzwerk hinzufügen"
 
+#: wifimgr-gtk.c:1410
+msgid "Show all Networks"
+msgstr ""
+
 #: wifimgr-gtk.c:326
 msgid "SSID:"
 msgstr ""
