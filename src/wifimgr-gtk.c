@@ -203,23 +203,23 @@ gui_message(const char * s, int msg_type) {
 	switch(msg_type) {
 	case MSG_INFO:
 		dialog = gtk_message_dialog_new_with_markup(NULL, GTK_DIALOG_DESTROY_WITH_PARENT,
-		    GTK_MESSAGE_INFO, GTK_BUTTONS_OK, s);
+		    GTK_MESSAGE_INFO, GTK_BUTTONS_OK, "%s", s);
 		break;
 	case MSG_WARNING:
 		dialog = gtk_message_dialog_new_with_markup(NULL, GTK_DIALOG_DESTROY_WITH_PARENT,
-		    GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, s);
+		    GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, "%s", s);
 		break;
 	case MSG_QUESTION:
 		dialog = gtk_message_dialog_new_with_markup(NULL, GTK_DIALOG_DESTROY_WITH_PARENT,
-		    GTK_MESSAGE_QUESTION, GTK_BUTTONS_YES_NO, s);
+		    GTK_MESSAGE_QUESTION, GTK_BUTTONS_YES_NO, "%s", s);
 		break;
 	case MSG_ERROR:
 		dialog = gtk_message_dialog_new_with_markup(NULL, GTK_DIALOG_DESTROY_WITH_PARENT,
-		    GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, s);
+		    GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, "%s", s);
 		break;
 	case MSG_INPUT:
 		dialog = gtk_message_dialog_new_with_markup(NULL, GTK_DIALOG_DESTROY_WITH_PARENT,
-		    GTK_MESSAGE_QUESTION, GTK_BUTTONS_OK, s);
+		    GTK_MESSAGE_QUESTION, GTK_BUTTONS_OK, "%s", s);
 		w = gtk_entry_new();
 		gtk_entry_set_visibility(GTK_ENTRY(w), FALSE);
 		gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_OK);
