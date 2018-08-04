@@ -1,0 +1,400 @@
+# WiFi Networks Manager
+# Copyright (C) 2011, J.R. Oldroyd, Open Advisors Limited
+# This file is distributed under the same license as the wifimgr package.
+# J.R. Oldroyd, <fbsd@opal.com>
+#
+# $Id: ja.po 99 2013-05-27 20:20:35Z jr $
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wifimgr 1.9\n"
+"Report-Msgid-Bugs-To: <fbsd@opal.com>\n"
+"POT-Creation-Date: 2011-11-10 15:23-0500\n"
+"PO-Revision-Date: 2011-07-27 11:05+0900\n"
+"Last-Translator: TAKANO Yuji <takachan@running-dog.net>\n"
+"Language-Team: wifimgr Translation Team <fbsd@opal.com>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: wifimgr-gtk.c:144 wifimgr-gtk.c:491 wifimgr-gtk.c:515 wifimgr-gtk.c:539
+msgid "(Unset)"
+msgstr ""
+
+#: wifimgr-gtk.c:165 wifimgr-gtk.c:349
+msgid "Open"
+msgstr "オープン"
+
+#: wifimgr-gtk.c:169 wifimgr-gtk.c:350
+msgid "WEP"
+msgstr ""
+
+#: wifimgr-gtk.c:173 wifimgr-gtk.c:351
+msgid "WPA PSK"
+msgstr ""
+
+#: wifimgr-gtk.c:177 wifimgr-gtk.c:352
+msgid "RSN PSK"
+msgstr ""
+
+#: wifimgr-gtk.c:181 wifimgr-gtk.c:353
+msgid "WPA EAP"
+msgstr ""
+
+#: wifimgr-gtk.c:185 wifimgr-gtk.c:354
+msgid "RSN EAP"
+msgstr ""
+
+#: wifimgr-gtk.c:233 wifimgr-gtk.c:303 wifimgr-gtk.c:410 wifimgr-gtk.c:1352
+#: wifimgr-gtk.c:1364
+msgid "WiFi Networks Manager"
+msgstr "Wi-Fi ネットワークマネージャ"
+
+#: wifimgr-gtk.c:264 wifimgr.c:410 wifimgr.c:886
+#, c-format
+msgid "Error adding SSID <b>%s</b>"
+msgstr "SSID 登録エラー <b>%s</b>"
+
+#: wifimgr-gtk.c:290 wifimgr.c:212 wifimgr.c:836
+#, c-format
+msgid "Out of memory."
+msgstr "メモリ不足"
+
+#: wifimgr-gtk.c:321 wifimgr-gtk.c:1386
+msgid "Add Cloaked Network"
+msgstr "シークレットネットワークの追加"
+
+#: wifimgr-gtk.c:326
+msgid "SSID:"
+msgstr "SSID:"
+
+#: wifimgr-gtk.c:342
+msgid "Security Type:"
+msgstr "セキュリティタイプ:"
+
+#: wifimgr-gtk.c:368 wifimgr-gtk.c:970
+msgid "Done"
+msgstr "了解"
+
+#: wifimgr-gtk.c:417 wifimgr-gtk.c:1134
+msgid "Edit EAP Parameters"
+msgstr "EAP パラメータ編集"
+
+#: wifimgr-gtk.c:422
+msgid "Network:"
+msgstr "ネットワーク:"
+
+#: wifimgr-gtk.c:452
+msgid "<b>EAP Parameter</b>"
+msgstr "<b>EAP パラメータ</b>"
+
+#: wifimgr-gtk.c:458
+msgid "<b>Value</b>"
+msgstr "<b>バリュー</b>"
+
+#: wifimgr-gtk.c:467
+msgid "PSK:"
+msgstr ""
+
+#: wifimgr-gtk.c:484
+msgid "EAP:"
+msgstr ""
+
+#: wifimgr-gtk.c:508
+msgid "Pairwise:"
+msgstr "ペア:"
+
+#: wifimgr-gtk.c:532
+msgid "Group:"
+msgstr "グループ:"
+
+#: wifimgr-gtk.c:556
+msgid "Identity:"
+msgstr "アイデンティティ:"
+
+#: wifimgr-gtk.c:572
+msgid "Anonymous Identity:"
+msgstr "匿名アイデンティティ:"
+
+#: wifimgr-gtk.c:588
+msgid "Mixed Cell:"
+msgstr "混在環境:"
+
+#: wifimgr-gtk.c:604
+msgid "Password:"
+msgstr "パスワード:"
+
+#: wifimgr-gtk.c:622 wifimgr-gtk.c:629
+msgid "CA Certificate:"
+msgstr "CA 証明書:"
+
+#: wifimgr-gtk.c:642 wifimgr-gtk.c:649
+msgid "Client Certificate:"
+msgstr "クライアント証明書:"
+
+#: wifimgr-gtk.c:662 wifimgr-gtk.c:669
+msgid "Private Key:"
+msgstr "プライベートキー:"
+
+#: wifimgr-gtk.c:682
+msgid "Private Key Password:"
+msgstr "プライベートキーパスワード"
+
+#: wifimgr-gtk.c:700 wifimgr-gtk.c:707
+msgid "DH/DSA Parameters File:"
+msgstr "DH/DSA パラメータファイル:"
+
+#: wifimgr-gtk.c:720
+msgid "Subject Match:"
+msgstr "サブジェクトマッチ:"
+
+#: wifimgr-gtk.c:736
+msgid "Phase1 Parameters:"
+msgstr "フェーズ 1 パラメータ:"
+
+#: wifimgr-gtk.c:752 wifimgr-gtk.c:759
+msgid "CA Certificate 2:"
+msgstr "CA 証明書 2:"
+
+#: wifimgr-gtk.c:772 wifimgr-gtk.c:779
+msgid "Client Certificate 2:"
+msgstr "クライアント証明書 2:"
+
+#: wifimgr-gtk.c:792 wifimgr-gtk.c:799
+msgid "Private Key 2:"
+msgstr "プライベートキー 2:"
+
+#: wifimgr-gtk.c:812
+msgid "Private Key 2 Password:"
+msgstr "ライベートキー 2 パスワード:"
+
+#: wifimgr-gtk.c:830 wifimgr-gtk.c:837
+msgid "DH/DSA Parameters File 2:"
+msgstr "DH/DSA パラメータファイル 2:"
+
+#: wifimgr-gtk.c:850
+msgid "Subject Match 2:"
+msgstr "サブジェクトマッチ 2:"
+
+#: wifimgr-gtk.c:866
+msgid "Phase2 Parameters:"
+msgstr "フェーズ 2 パラメータ:"
+
+#: wifimgr-gtk.c:882
+msgid "EAP PSK (16-byte hex value):"
+msgstr "EAP PSK (16-byte HEX 文字):"
+
+#: wifimgr-gtk.c:898
+msgid "User NAI for EAP PSK:"
+msgstr ""
+
+#: wifimgr-gtk.c:914
+msgid "Server NAI for EAP PSK:"
+msgstr ""
+
+#: wifimgr-gtk.c:930 wifimgr-gtk.c:937
+msgid "PAC File:"
+msgstr "PAC フアイル:"
+
+#: wifimgr-gtk.c:950
+msgid "EAP Workaround:"
+msgstr ""
+
+#: wifimgr-gtk.c:1010
+msgid "<b>Enabled</b>"
+msgstr "<b>有効</b>"
+
+#: wifimgr-gtk.c:1016
+msgid "<b>SSID</b>"
+msgstr "<b>SSID</b>"
+
+#: wifimgr-gtk.c:1026
+msgid "<b>Encryption Key</b>"
+msgstr "<b>暗号化キー</b>"
+
+#: wifimgr-gtk.c:1038
+msgid "<b>Comment</b>"
+msgstr "<b>コメント</b>"
+
+#: wifimgr-gtk.c:1045
+msgid "<b>Priority</b>"
+msgstr "<b>プライオリティー</b>"
+
+#: wifimgr-gtk.c:1052
+msgid "<b>BSSID</b>"
+msgstr "<b>BSSID</b>"
+
+#: wifimgr-gtk.c:1059
+msgid "<b>Any\nBSSID</b>"
+msgstr "<b>任意の\nBSSID</b>"
+
+#: wifimgr-gtk.c:1066
+msgid "<b>Chan</b>"
+msgstr "<b>チャンネル</b>"
+
+#: wifimgr-gtk.c:1073
+msgid "<b>Mbps</b>"
+msgstr "<b>Mb/s</b>"
+
+#: wifimgr-gtk.c:1238 wifimgr-gtk.c:1265 wifimgr-gtk.c:1328
+msgid "Discard changes?"
+msgstr "変更を破棄しますか?"
+
+#: wifimgr-gtk.c:1381
+msgid "WiFi Up/Down"
+msgstr "Wi-Fi Link アップ/ダウン"
+
+#: wifimgr-gtk.c:1390
+msgid "Rescan Networks"
+msgstr "ネットワークの再スキャン"
+
+#: wifimgr-gtk.c:1394
+msgid "Close"
+msgstr "閉じる"
+
+#: wifimgr-gtk.c:1397
+msgid "Save and Reconnect"
+msgstr "保存して再起動"
+
+#: wifimgr.c:429
+#, c-format
+msgid "Cannot read configuration file <b>%s</b> - %s."
+msgstr "設定ファイル <b>%s</b> を読み込めませんでした。 - %s"
+
+#. NOTE TO TRANSLATOR: leave "%s.save" in English
+#: wifimgr.c:447
+#, c-format
+msgid ""
+"Configuration file contains additional directives.\n"
+"A backup file <b>%s.save</b> with\n"
+"different contents already exists.  You must rename\n"
+"the configuration file by hand."
+msgstr ""
+"設定ファイルにディレクティブが追加されました。\n"
+"バックアップファイル <b>%s.save</b> とは異なる内容が存在します。\n"
+"この設定ファイルは手動でバックアップしてください。"
+
+#. NOTE TO TRANSLATOR: leave "%s.save" in English
+#: wifimgr.c:461
+#, c-format
+msgid "Cannot write backup configuration file <b>%s.save</b>."
+msgstr "バックアップファイル <b>%s.save</b> に書き込むことができませんでした。"
+
+#. NOTE TO TRANSLATOR: leave "%s.save" in English
+#: wifimgr.c:468
+#, c-format
+msgid ""
+"Configuration file contains additional directives;\n"
+"a backup copy has been made in <b>%s.save</b>."
+msgstr ""
+"設定ファイルにディレクティブが追加されました。\n"
+"バックアップファイル <b>%s.save</b> が作成されました。"
+
+#: wifimgr.c:545
+#, c-format
+msgid ""
+"Invalid key for network <b>%s</b>.\n"
+"\n"
+"WPA keys must be 8 to 63 characters long or\n"
+"a 64 character hexadecimal number."
+msgstr ""
+"無効なネットワークキー <b>%s</b>\n"
+"\n"
+"WPAキーは8〜63文字で指定するか\n"
+"64文字の16進数で指定してください。"
+
+#: wifimgr.c:557
+#, c-format
+msgid ""
+"Invalid key for network <b>%s</b>.\n"
+"\n"
+"WEP keys must be 5 or 13 character strings or\n"
+"10 or 26 character hexadecimal numbers."
+msgstr ""
+"無効なネットワークキー <b>%s</b>\n"
+"\n"
+"WEPキーは5または13文字以上指定するか\n"
+"10または26文字の16進数で指定してください。"
+
+#: wifimgr.c:573
+#, c-format
+msgid "Cannot write temporary networks file <b>%s</b>."
+msgstr "テンポラリファイル <b>%s</b> に書き込めませんでした。"
+
+#: wifimgr.c:749
+#, c-format
+msgid "Cannot write configuration file <b>%s</b> - %s."
+msgstr "設定ファイル <b>%s</b> に書き込めませんでした。 - %s"
+
+#: wifimgr.c:776
+#, c-format
+msgid "Cannot reset interface <b>%s</b> - %s."
+msgstr "インタフェース <b>%s</b> をリセットできませんでした。 - %s"
+
+#: wifimgr.c:814 wifimgr.c:915 wifimgr.c:949 wifimgr.c:1038
+#, c-format
+msgid "Cannot exec %s."
+msgstr "%s を実行できませんでした。"
+
+#: wifimgr.c:891
+#, c-format
+msgid ""
+"Network SSID <b>%s</b> has changed security method.  Update that entry and "
+"re-save."
+msgstr ""
+"ネットワーク SSID <b>%s</b> はセキュリティ方式を変更しました。そのエントリを"
+"更新し再度保存してください。"
+
+#: wifimgr.c:994
+#, c-format
+msgid "Failed to %s WiFi interface."
+msgstr "WiFi interface %s に問題があります。"
+
+#: wifimgr.c:995
+msgid "enable"
+msgstr "有効"
+
+#: wifimgr.c:995
+msgid "disable"
+msgstr "停止"
+
+#: wifimgr.c:1031
+msgid "Enter Administrator password:"
+msgstr "管理者パスワード:"
+
+#: wifimgr.c:1054
+#, c-format
+msgid "Password error - %s."
+msgstr "パスワードエラー - %s."
+
+#: wifimgr.c:1078
+#, c-format
+msgid "wifimgr: cannot open display\n"
+msgstr "wifimgr: ディスプレーが開けません\n"
+
+#: wifimgr.c:1088
+#, c-format
+msgid "No WiFi interface is configured in <b>%s</b>."
+msgstr "Wi-Fi インターフェース <b>%s</b> は設定されていません。"
+
+#: wifimgrsu.c:71
+#, c-format
+msgid "wifimgrsu: for invocation by wifimgr(8) only\n"
+msgstr "wifimgrsu: wifimgr(8) ではできないかもしれません。\n"
+
+#: wifimgrsu.c:92
+msgid "invalid password"
+msgstr "無効なパスワード"
+
+#: wifimgrsu.c:102
+msgid "not authorized"
+msgstr "認証できません"
+
+#: wifimgrsu.c:137
+msgid "invalid command"
+msgstr "無効なコマンド"
+
+#: wifimgrsu.c:149
+msgid "exit status"
+msgstr "終了ステータス"

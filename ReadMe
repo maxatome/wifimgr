@@ -1,0 +1,7 @@
+wifimgr WiFi Networks Manager
+
+The latest release tarball is available here:
+	http://opal.com/freebsd/ports/net-mgmt/wifimgr
+
+The current development version can be downloaded using subversion here:
+	svn://opal.com/freebsd/ports/net-mgmt/wifimgr

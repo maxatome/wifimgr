@@ -1,0 +1,399 @@
+# WiFi Networks Manager
+# Copyright (C) 2009, J.R. Oldroyd, Open Advisors Limited
+# This file is distributed under the same license as the wifimgr package.
+# J.R. Oldroyd, <fbsd@opal.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wifimgr 1.9\n"
+"Report-Msgid-Bugs-To: <fbsd@opal.com>\n"
+"POT-Creation-Date: 2011-11-10 15:23-0500\n"
+"PO-Revision-Date: 2012-01-24 08:32+0400\n"
+"Last-Translator: Serge Volkov <sv@sisadminov.net>\n"
+"Language-Team: wifimgr Translation Team <fbsd@opal.com>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: wifimgr-gtk.c:144 wifimgr-gtk.c:491 wifimgr-gtk.c:515 wifimgr-gtk.c:539
+msgid "(Unset)"
+msgstr ""
+
+#: wifimgr-gtk.c:165 wifimgr-gtk.c:349
+msgid "Open"
+msgstr "Открытая"
+
+#: wifimgr-gtk.c:169 wifimgr-gtk.c:350
+msgid "WEP"
+msgstr ""
+
+#: wifimgr-gtk.c:173 wifimgr-gtk.c:351
+msgid "WPA PSK"
+msgstr ""
+
+#: wifimgr-gtk.c:177 wifimgr-gtk.c:352
+msgid "RSN PSK"
+msgstr ""
+
+#: wifimgr-gtk.c:181 wifimgr-gtk.c:353
+msgid "WPA EAP"
+msgstr ""
+
+#: wifimgr-gtk.c:185 wifimgr-gtk.c:354
+msgid "RSN EAP"
+msgstr ""
+
+#: wifimgr-gtk.c:233 wifimgr-gtk.c:303 wifimgr-gtk.c:410 wifimgr-gtk.c:1352
+#: wifimgr-gtk.c:1364
+msgid "WiFi Networks Manager"
+msgstr "Управление WiFi сетями"
+
+#: wifimgr-gtk.c:264 wifimgr.c:410 wifimgr.c:886
+#, c-format
+msgid "Error adding SSID <b>%s</b>"
+msgstr "Ошибка при добавлении SSID <b>%s</b>"
+
+#: wifimgr-gtk.c:290 wifimgr.c:212 wifimgr.c:836
+#, c-format
+msgid "Out of memory."
+msgstr "Недостаточно памяти."
+
+#: wifimgr-gtk.c:321 wifimgr-gtk.c:1386
+msgid "Add Cloaked Network"
+msgstr "Добавить скрытую сеть"
+
+#: wifimgr-gtk.c:326
+msgid "SSID:"
+msgstr ""
+
+#: wifimgr-gtk.c:342
+msgid "Security Type:"
+msgstr "Тип безопасности:"
+
+#: wifimgr-gtk.c:368 wifimgr-gtk.c:970
+msgid "Done"
+msgstr "Добавить"
+
+#: wifimgr-gtk.c:417 wifimgr-gtk.c:1134
+msgid "Edit EAP Parameters"
+msgstr "Редактировать параметры EAP"
+
+#: wifimgr-gtk.c:422
+msgid "Network:"
+msgstr "Сеть:"
+
+#: wifimgr-gtk.c:452
+msgid "<b>EAP Parameter</b>"
+msgstr "<b>Параметр EAP</b>"
+
+#: wifimgr-gtk.c:458
+msgid "<b>Value</b>"
+msgstr "<b>Значение</b>"
+
+#: wifimgr-gtk.c:467
+msgid "PSK:"
+msgstr ""
+
+#: wifimgr-gtk.c:484
+msgid "EAP:"
+msgstr ""
+
+#: wifimgr-gtk.c:508
+msgid "Pairwise:"
+msgstr ""
+
+#: wifimgr-gtk.c:532
+msgid "Group:"
+msgstr ""
+
+#: wifimgr-gtk.c:556
+msgid "Identity:"
+msgstr ""
+
+#: wifimgr-gtk.c:572
+msgid "Anonymous Identity:"
+msgstr ""
+
+#: wifimgr-gtk.c:588
+msgid "Mixed Cell:"
+msgstr ""
+
+#: wifimgr-gtk.c:604
+msgid "Password:"
+msgstr ""
+
+#: wifimgr-gtk.c:622 wifimgr-gtk.c:629
+msgid "CA Certificate:"
+msgstr ""
+
+#: wifimgr-gtk.c:642 wifimgr-gtk.c:649
+msgid "Client Certificate:"
+msgstr ""
+
+#: wifimgr-gtk.c:662 wifimgr-gtk.c:669
+msgid "Private Key:"
+msgstr ""
+
+#: wifimgr-gtk.c:682
+msgid "Private Key Password:"
+msgstr ""
+
+#: wifimgr-gtk.c:700 wifimgr-gtk.c:707
+msgid "DH/DSA Parameters File:"
+msgstr ""
+
+#: wifimgr-gtk.c:720
+msgid "Subject Match:"
+msgstr ""
+
+#: wifimgr-gtk.c:736
+msgid "Phase1 Parameters:"
+msgstr ""
+
+#: wifimgr-gtk.c:752 wifimgr-gtk.c:759
+msgid "CA Certificate 2:"
+msgstr ""
+
+#: wifimgr-gtk.c:772 wifimgr-gtk.c:779
+msgid "Client Certificate 2:"
+msgstr ""
+
+#: wifimgr-gtk.c:792 wifimgr-gtk.c:799
+msgid "Private Key 2:"
+msgstr ""
+
+#: wifimgr-gtk.c:812
+msgid "Private Key 2 Password:"
+msgstr ""
+
+#: wifimgr-gtk.c:830 wifimgr-gtk.c:837
+msgid "DH/DSA Parameters File 2:"
+msgstr ""
+
+#: wifimgr-gtk.c:850
+msgid "Subject Match 2:"
+msgstr ""
+
+#: wifimgr-gtk.c:866
+msgid "Phase2 Parameters:"
+msgstr ""
+
+#: wifimgr-gtk.c:882
+msgid "EAP PSK (16-byte hex value):"
+msgstr ""
+
+#: wifimgr-gtk.c:898
+msgid "User NAI for EAP PSK:"
+msgstr ""
+
+#: wifimgr-gtk.c:914
+msgid "Server NAI for EAP PSK:"
+msgstr ""
+
+#: wifimgr-gtk.c:930 wifimgr-gtk.c:937
+msgid "PAC File:"
+msgstr ""
+
+#: wifimgr-gtk.c:950
+msgid "EAP Workaround:"
+msgstr ""
+
+#: wifimgr-gtk.c:1010
+msgid "<b>Enabled</b>"
+msgstr "<b>Вкл/Выкл</b>"
+
+#: wifimgr-gtk.c:1016
+msgid "<b>SSID</b>"
+msgstr ""
+
+#: wifimgr-gtk.c:1026
+msgid "<b>Encryption Key</b>"
+msgstr "<b>Ключ шифрования</b>"
+
+#: wifimgr-gtk.c:1038
+msgid "<b>Comment</b>"
+msgstr "<b>Примечание</b>"
+
+#: wifimgr-gtk.c:1045
+msgid "<b>Priority</b>"
+msgstr "<b>Приоритет</b>"
+
+#: wifimgr-gtk.c:1052
+msgid "<b>BSSID</b>"
+msgstr ""
+
+#: wifimgr-gtk.c:1059
+msgid "<b>Any\nBSSID</b>"
+msgstr "<b>Любой\nBSSID</b>"
+
+#: wifimgr-gtk.c:1066
+msgid "<b>Chan</b>"
+msgstr "<b>Канал</b>"
+
+#: wifimgr-gtk.c:1073
+msgid "<b>Mbps</b>"
+msgstr "<b>Мбит/c</b>"
+
+#: wifimgr-gtk.c:1238 wifimgr-gtk.c:1265 wifimgr-gtk.c:1328
+msgid "Discard changes?"
+msgstr "Отменить изменения?"
+
+#: wifimgr-gtk.c:1381
+msgid "WiFi Up/Down"
+msgstr "WiFi Вкл/Выкл"
+
+#: wifimgr-gtk.c:1390
+msgid "Rescan Networks"
+msgstr "Пересканировать сети"
+
+#: wifimgr-gtk.c:1394
+msgid "Close"
+msgstr "Закрыть"
+
+#: wifimgr-gtk.c:1397
+msgid "Save and Reconnect"
+msgstr "Сохранить и соединиться"
+
+#: wifimgr.c:429
+#, c-format
+msgid "Cannot read configuration file <b>%s</b> - %s."
+msgstr "Невозможно прочитать конфигурационный файл  <b>%s</b> - %s."
+
+#. NOTE TO TRANSLATOR: leave "%s.save" in English
+#: wifimgr.c:447
+#, c-format
+msgid ""
+"Configuration file contains additional directives.\n"
+"A backup file <b>%s.save</b> with\n"
+"different contents already exists.  You must rename\n"
+"the configuration file by hand."
+msgstr ""
+"Конфигурационный файл содержит дополнительные настройки;\n"
+"Резервная копия <b>%s.save</b> с\n"
+"другим содержанием уже существует.  Вы должны переименовать\n"
+"конфигурационный файл вручную."
+
+#. NOTE TO TRANSLATOR: leave "%s.save" in English
+#: wifimgr.c:461
+#, c-format
+msgid "Cannot write backup configuration file <b>%s.save</b>."
+msgstr "Невозможно создать резервную копию конфигурационного файла <b>%s.save</b>."
+
+#. NOTE TO TRANSLATOR: leave "%s.save" in English
+#: wifimgr.c:468
+#, c-format
+msgid ""
+"Configuration file contains additional directives;\n"
+"a backup copy has been made in <b>%s.save</b>."
+msgstr ""
+"Конфигурационный файл содержит дополнительные настройки;\n"
+"резервная копия была сохранена в <b>%s.save</b>."
+
+#: wifimgr.c:545
+#, c-format
+msgid ""
+"Invalid key for network <b>%s</b>.\n"
+"\n"
+"WPA keys must be 8 to 63 characters long or\n"
+"a 64 character hexadecimal number."
+msgstr ""
+"Неправильный ключ для сети <b>%s</b>.\n"
+"\n"
+"WPA ключ должен состоять из 8 - 63 буквенных символов или\n"
+"64 символьного шестнадцатиричного числа."
+
+#: wifimgr.c:557
+#, c-format
+msgid ""
+"Invalid key for network <b>%s</b>.\n"
+"\n"
+"WEP keys must be 5 or 13 character strings or\n"
+"10 or 26 character hexadecimal numbers."
+msgstr ""
+"Неправильный ключ для сети <b>%s</b>.\n"
+"\n"
+"WEP ключ должен состоять из 5 - 13 буквенных символов или\n"
+"10 - 26 символьного шестнадцатиричного числа."
+
+#: wifimgr.c:573
+#, c-format
+msgid "Cannot write temporary networks file <b>%s</b>."
+msgstr "Невозможно записать временный файл <b>%s</b>."
+
+#: wifimgr.c:749
+#, c-format
+msgid "Cannot write configuration file <b>%s</b> - %s."
+msgstr "Невозможно записать конфигурационный файл <b>%s</b> - %s."
+
+#: wifimgr.c:776
+#, c-format
+msgid "Cannot reset interface <b>%s</b> - %s."
+msgstr "Невозможно сбросить интерфейс <b>%s</b> - %s."
+
+#: wifimgr.c:814 wifimgr.c:915 wifimgr.c:949 wifimgr.c:1038
+#, c-format
+msgid "Cannot exec %s."
+msgstr "Невозможно запустить %s."
+
+#: wifimgr.c:891
+#, c-format
+msgid ""
+"Network SSID <b>%s</b> has changed security method.  Update that entry and "
+"re-save."
+msgstr ""
+"В сети SSID <b>%s</b> изменились параметры безопасности. Обновите параметры и"
+"сохраните их."
+
+#: wifimgr.c:994
+#, c-format
+msgid "Failed to %s WiFi interface."
+msgstr "Переключено на %s WiFi интерфейс."
+
+#: wifimgr.c:995
+msgid "enable"
+msgstr "включить"
+
+#: wifimgr.c:995
+msgid "disable"
+msgstr "выключить"
+
+#: wifimgr.c:1031
+msgid "Enter Administrator password:"
+msgstr "Введите пароль администратора:"
+
+#: wifimgr.c:1054
+#, c-format
+msgid "Password error - %s."
+msgstr "Неверный пароль - %s."
+
+#: wifimgr.c:1078
+#, c-format
+msgid "wifimgr: cannot open display\n"
+msgstr "wifimgr: невозможно открыть дисплей\n"
+
+#: wifimgr.c:1088
+#, c-format
+msgid "No WiFi interface is configured in <b>%s</b>."
+msgstr "В <b>%s</b> не определены WiFi интерфейсы."
+
+#: wifimgrsu.c:71
+#, c-format
+msgid "wifimgrsu: for invocation by wifimgr(8) only\n"
+msgstr "wifimgrsu: запускается только из wifimgr(8)\n"
+
+#: wifimgrsu.c:92
+msgid "invalid password"
+msgstr "неверный пароль"
+
+#: wifimgrsu.c:102
+msgid "not authorized"
+msgstr "нет доступа"
+
+#: wifimgrsu.c:137
+msgid "invalid command"
+msgstr "неверная команда"
+
+#: wifimgrsu.c:149
+msgid "exit status"
+msgstr "код завершения"

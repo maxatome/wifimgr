@@ -1,0 +1,195 @@
+.\"-
+.\"
+.\" Copyright (c) 2009, J.R. Oldroyd, Open Advisors Limited
+.\" All rights reserved.
+.\" 
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions are met:
+.\"     * Redistributions of source code must retain the above copyright
+.\"       notice, this list of conditions and the following disclaimer.
+.\"     * Redistributions in binary form must reproduce the above copyright
+.\"       notice, this list of conditions and the following disclaimer in the
+.\"       documentation and/or other materials provided with the distribution.
+.\"     * Neither the name of the author, the author's organization nor the
+.\"       names of its contributors may be used to endorse or promote products
+.\"       derived from this software without specific prior written permission.
+.\" 
+.\" THIS SOFTWARE IS PROVIDED BY OPEN ADVISORS LIMITED ''AS IS'' AND ANY
+.\" EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+.\" WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+.\" DISCLAIMED. IN NO EVENT SHALL OPEN ADVISORS LIMITED BE LIABLE FOR ANY
+.\" DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+.\" (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+.\" LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+.\" ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+.\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+.\" SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+.\"
+.\"
+.\" $Id: wifimgr.8 85 2011-11-10 20:54:15Z jr $
+.\"
+.Dd October 30, 2009
+.Dt WIFIMGR 8
+.Os
+.Sh NAME
+.Nm wifimgr
+.Nd WiFi Networks Manager
+.Sh SYNOPSIS
+.Nm
+.Sh DESCRIPTION
+.Nm
+is a GUI-based tool to manage WiFi network configuration.
+.Pp
+.Nm
+supports open networks, and secured networks using WEP, WPA-PSK and
+WPA-EAP with manual password or encryption key configuration.
+Automatic configuration for WPS is not supported, but passwords for
+WPS networks can be entered manually as for WPA-PSK networks.
+.Pp
+.Nm
+acts merely as an editor of the
+.Xr wpa_supplicant.conf 5
+file.  Actual network interface configuration and management is
+still done by the
+.Xr wpa_supplicant 8
+program.
+.Pp
+Networks in the configuration file, together with new networks found
+by a scan of the WiFi interface are displayed to the user.  The user
+may enable/disable networks as needed, enter either passwords or EAP
+configuration together with a short comment, and set a connection
+priority.  To make use of so-called ``cloaked'' networks which do
+not broadcast their SSID and which are therefore not found by the
+interface scan, the user can also manually add new networks to the
+list using the "Add" button.  When the "Save" button is clicked, the
+enabled networks are written back out to the
+.Xr wpa_supplicant.conf 5
+file and the network interface is restarted.
+.Pp
+.Nm
+stores each network's SSID and BSSID in the configuration file and uses
+these when identifying available networks.  Using the combination allows
+for situations where the same SSID is repeated on a separate network which
+has different password.  However, this also means that on a network with
+multiple access points, there must be separate entries for that network,
+one for each of the BSSIDs.  Since that can become unwieldly for networks
+with very many access points (e.g., organization-wide networks and also
+mobile phone hotspots), the "Any BSSID" checkbox can be checked to not
+save this network's BSSID.  Keep in mind, however, that doing this will
+mean that use of a different network that happens to use the same SSID
+but a different authentication scheme or password will then not be
+possible.
+.Pp
+The
+.Em priority
+field can be used to indicate which network or access points should be
+preferred over others.  Higher values mean higher priority.
+A special priority value of -1 allows a network to be kept in the networks
+file, but it will be ignored when scanning for networks to connect to.
+Since this is not a standard feature of
+.Xr wpa_supplicant 8 ,
+this is accomplished by prepending a ``*'' to the SSID when it is saved
+in the file.  This is useful to avoid having to re-enter passwords and
+comments if a network might be needed again later.
+.Pp
+Since
+.Nm
+needs to restart the network interface and edit files that might not be
+writable to regular users, when
+.Nm
+starts up, it requests the administrator (i.e., root) password.
+.Pp
+The
+.Xr wpa_supplicant.conf 5
+may be edited by hand in-between uses of
+.Nm .
+.Sh CONFIGURATION
+A network interface must be configured for WiFi use in
+.Li /etc/rc.conf .
+This is best done using a configuration entry such as:
+.Bd -literal -offset indent
+ifconfig_wlan0="WPA DHCP"
+
+.Ed
+using the appropriate interface name.
+.Sh "WIFI SECURITY"
+WiFi networks can operate with several security methods.
+.Pp
+Security can be off.  This is known as an open, plaintext or insecure network.
+All packets broadcast over the network can be intercepted by others and
+their contents examined.  Networks in public places such as airports and
+hotels are often open networks.  Such networks can still be used securely,
+but it is up to each application to provide its own security and it is
+up to the user to confirm, before each network use, that application
+security is in use.
+.Em ssh ,
+.Em https
+and
+.Em PGP
+email are examples of applications offering security themselves.
+.Pp
+Early WiFi security was done using
+.Em WEP ,
+Wired Equivalent Privacy.  WEP uses a shared password to encrypt all
+data transmissions.  Unfortunately, the encryption technique used
+by WEP was easily cracked and software to do this is widely available.
+.Pp
+A replacement to WEP known as
+.Em WPA ,
+or WiFi Protected Access, has become more widely used today.  However,
+due to the urgency with which it was needed, some vendors implemented it
+before the standards were completely approved.  This has led to there
+being several variants of WPA.  Early implementations are known as WPA
+networks.  Once the standard was approved, it was renamed to
+.Em RSN ,
+or Robust Secure Network also often referred to as WPA2.
+.Pp
+Both WPA and RSN offer several security models.  Home users and small
+businesses might use a shared access key, known as a pre-shared key (PSK).
+Depending on the access point's capabilities, there can be a single
+PSK for all users or a separate PSK for each user.  Larger enterprises
+might use more complex key management schemes by means of RSN/WPA's
+extensible authentication protocol (EAP).  EAP typically requires
+large keys and certificates stored in files.
+.Pp
+All WiFi security was developed by the IEEE 802.11 Working Group.
+WEP was the original IEEE 802.11 standard.  WPA was the later IEEE
+802.11i draft 3 standard.  RSN is the finalized IEEE 802.11i standard.
+.Pp
+The security being used on a network is set in the access point
+configuration.
+.Nm
+detects what security is available on a network and prompts the
+user for suitable configuration to use it.
+.Sh "GUI SUPPORT"
+.Nm
+was originally written for users of the XFce4 window manager but it
+will work in any environment with the GTK+ libraries installed.
+.Sh ENVIRONMENT
+.Bl -tag -width ".Ev TMPDIR" -compact
+.It Ev TMPDIR
+directory where temporary files are written
+(default: "/tmp")
+.El
+.Sh FILES
+.Bl -tag -width ".Pa /etc/wpa_supplicant.conf.save" -compact
+.It Pa /etc/rc.conf
+system configuration file for configuration of WiFi interface
+.It Pa /etc/wpa_supplicant.conf
+networks configuration file
+.It Pa /etc/wpa_supplicant.conf.save
+backup of any wpa_supplicant.conf that contains directives unknown to
+.Nm
+.El
+.It Pa /etc/wpa_supplicant.conf
+.Sh "SEE ALSO"
+.Xr rc.conf 5 ,
+.Xr wpa_supplicant 8 ,
+.Xr wpa_supplicant.conf 5 .
+.Sh HISTORY
+The
+.Nm
+tool first appeared in
+.Fx 8.0 .
+.Sh AUTHOR
+.An J.R. Oldroyd, Open Advisors Limited Aq fbsd@opal.com .
