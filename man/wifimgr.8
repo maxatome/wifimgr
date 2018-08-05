@@ -36,6 +36,9 @@
 .Nd WiFi Networks Manager
 .Sh SYNOPSIS
 .Nm
+.Op Fl s
+.Op Fl o Ar ssid|signal|channel
+.Op Ar GTK options
 .Sh DESCRIPTION
 .Nm
 is a GUI-based tool to manage WiFi network configuration.
@@ -103,6 +106,15 @@ The
 .Xr wpa_supplicant.conf 5
 may be edited by hand in-between uses of
 .Nm .
+.Pp
+The options are as follows:
+.Bl -tag -width indent
+.It Fl o Ar ssid|signal|channel , Fl Fl order-by Ar ssid|signal|channel
+Networks are respectively ordered by SSID (default), signal strength
+or channel.
+.It Fl s , Fl Fl dont-show-all
+Only display visible networks (all networks are displayed by default).
+.El
 .Sh CONFIGURATION
 A network interface must be configured for WiFi use in
 .Li /etc/rc.conf .

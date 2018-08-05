@@ -38,6 +38,7 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include <string.h>
+#include <getopt.h>
 
 #ifndef WITHOUT_NLS
 #include <libintl.h>
@@ -57,7 +58,7 @@ int			gui_changes;
 GtkWidget *		gui_up_down_icon;
 struct wifi_net *	gui_new_net;
 gpointer *		gui_new_net_table;
-int			gui_show_all_networks = 0;
+int			gui_show_all_networks = 1;
 
 #define ORDER_BY_SSID		0
 #define ORDER_BY_BARS		1
@@ -71,7 +72,54 @@ static GtkWidget *	gui_fill_network_table(GtkWidget * x, gpointer * gp);
 */
 int
 gui_init(int * ac, char *** av) {
-	return gtk_init_check(ac, av);
+	int ok = gtk_init_check(ac, av);
+	if (ok) {
+	  int		ch;
+	  struct option	opts[] = {
+	    { "order-by",      required_argument, NULL, 'o' },
+	    { "dont-show-all", no_argument,       NULL, 's' },
+	    { "help",          no_argument,       NULL, 'h' },
+	    { NULL,            0,                 NULL, 0 }
+	  };
+	  char *	order_by[] = {"ssid", "signal", "channel", NULL};
+
+	  while ((ch = getopt_long(*ac, *av, "o:sh", opts, NULL)) != -1) {
+	    switch (ch) {
+	    case 's':
+	      gui_show_all_networks = 0;
+	      break;
+
+	    case 'o':
+	      ok = 0;
+	      for (ch = 0; order_by[ch] != NULL; ch++) {
+		if (strcasecmp(order_by[ch], optarg) == 0) {
+		  ok = 1;
+		  gui_networks_order = ch;
+		  break;
+		}
+	      }
+	      if (!ok) {
+		fprintf(stderr,
+		    gettext("wifimgr: order-by `%s' not recognized\n"),
+		    optarg);
+		return 0;
+	      }
+	      break;
+
+	    default:
+	      fprintf(stderr, gettext("usage: wifimgr [-hs] [-o ssid|signal|channel] [GTK options]\n"));
+	      return 0;
+	    }
+	  }
+
+	  *ac -= optind;
+	  *av += optind;
+
+	  return 1;
+	}
+
+	fprintf(stderr, gettext("wifimgr: cannot open display\n"));
+	return 0;
 }
 
 /*

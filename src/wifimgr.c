@@ -1099,7 +1099,6 @@ main(int argc, char ** argv) {
 
 	/* open display */
 	if (!gui_init(&argc, &argv)) {
-		fprintf(stderr, gettext("wifimgr: cannot open display\n"));
 		exit(1);
 	}
 

@@ -389,7 +389,16 @@ msgstr "Wachtwoord Administrateur invoeren:"
 msgid "Password error - %s."
 msgstr "Wachtwoord fout - %s."
 
-#: wifimgr.c:1078
+#: wifimgr-gtk.c:103
+#, c-format
+msgid "wifimgr: order-by `%s' not recognized\n"
+msgstr ""
+
+#: wifimgr-gtk.c:110
+msgid "usage: wifimgr [-hs] [-o ssid|signal|channel] [GTK options]\n"
+msgstr ""
+
+#: wifimgr-gtk.c:121
 #, c-format
 msgid "wifimgr: cannot open display\n"
 msgstr "wifimgr: display kan niet worden geopened\n"
