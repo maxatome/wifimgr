@@ -38,6 +38,102 @@
 #include <stdlib.h>
 #include <string.h>
 
+static int (*_nl_sort_specific_compar)(struct wifi_net * a, struct wifi_net * b);
+static int
+_nl_sort_generic_compar(const void *a, const void *b) {
+	return _nl_sort_specific_compar(*(struct wifi_net **)a, *(struct wifi_net **)b);
+}
+
+static void
+_nl_sort(struct wifi_net ** a, int (*compar)(struct wifi_net *, struct wifi_net *)) {
+	struct wifi_net *	p;
+	struct wifi_net **	list;
+	size_t			num;
+	int			i;
+
+	for (p = *a, num = 0; p; p = p->wn_next)
+		num++;
+
+	if (num <= 1)
+		return;
+
+	list = malloc(num * sizeof(struct wifi_net *));
+	if (list == NULL)
+		return;
+
+	for (p = *a, i = 0; p; p = p->wn_next, i++)
+		list[i] = p;
+
+	_nl_sort_specific_compar = compar;
+	qsort(list, num, sizeof(struct wifi_net *), _nl_sort_generic_compar);
+
+	*a = p = list[0];
+	for (i = 1; i < num; i++) {
+		p->wn_next = list[i];
+		p = list[i];
+	}
+	p->wn_next = NULL;
+
+	free(list);
+}
+
+static int
+_nl_order_by_ssid_compar(struct wifi_net * a, struct wifi_net * b) {
+	int cmp = strcasecmp(a->sup_ssid, b->sup_ssid);
+	if (cmp != 0)
+		return cmp;
+
+	return strcasecmp(a->sup_bssid, b->sup_bssid);
+}
+
+void
+nl_order_by_ssid(struct wifi_net ** a) {
+	_nl_sort(a, _nl_order_by_ssid_compar);
+}
+
+static int
+_nl_order_by_bars_compar(struct wifi_net * a, struct wifi_net * b) {
+	if (a->wn_bars == b->wn_bars) {
+		int cmp = strcasecmp(a->sup_ssid, b->sup_ssid);
+		if (cmp != 0)
+			return cmp;
+
+		return strcasecmp(a->sup_bssid, b->sup_bssid);
+	}
+
+	return b->wn_bars - a->wn_bars;
+}
+
+void
+nl_order_by_bars(struct wifi_net ** a) {
+	_nl_sort(a, _nl_order_by_bars_compar);
+}
+
+
+static int
+_nl_order_by_channel_compar(struct wifi_net * a, struct wifi_net * b) {
+	if (a->wn_chan == b->wn_chan) {
+		int cmp = strcasecmp(a->sup_ssid, b->sup_ssid);
+		if (cmp != 0)
+			return cmp;
+
+		return strcasecmp(a->sup_bssid, b->sup_bssid);
+	}
+
+	/* 0 channel is always last */
+	if (a->wn_chan == 0)
+		return 1;
+	if (b->wn_chan == 0)
+		return -1;
+
+	return a->wn_chan - b->wn_chan;
+}
+
+void
+nl_order_by_channel(struct wifi_net ** a) {
+	_nl_sort(a, _nl_order_by_channel_compar);
+}
+
 /*
 ** copy and insert element into list
 */

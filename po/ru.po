@@ -63,7 +63,23 @@ msgstr "Недостаточно памяти."
 msgid "Add Cloaked Network"
 msgstr "Добавить скрытую сеть"
 
-#: wifimgr-gtk.c:1410
+#: wifimgr-gtk.c:1451
+msgid "Order by"
+msgstr ""
+
+#: wifimgr-gtk.c:1456
+msgid "SSID"
+msgstr ""
+
+#: wifimgr-gtk.c:1457
+msgid "signal strength"
+msgstr ""
+
+#: wifimgr-gtk.c:1458
+msgid "channel"
+msgstr "канал"
+
+#: wifimgr-gtk.c:1464
 msgid "Show all Networks"
 msgstr ""
 

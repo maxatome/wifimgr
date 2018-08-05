@@ -65,7 +65,23 @@ msgstr "Plus de mémoire."
 msgid "Add Cloaked Network"
 msgstr "Ajouter Réseau Non-Diffusé"
 
-#: wifimgr-gtk.c:1410
+#: wifimgr-gtk.c:1451
+msgid "Order by"
+msgstr "Trier par"
+
+#: wifimgr-gtk.c:1456
+msgid "SSID"
+msgstr ""
+
+#: wifimgr-gtk.c:1457
+msgid "signal strength"
+msgstr "force de signal"
+
+#: wifimgr-gtk.c:1458
+msgid "channel"
+msgstr "canal"
+
+#: wifimgr-gtk.c:1464
 msgid "Show all Networks"
 msgstr "Lister tous les Réseaux"
 

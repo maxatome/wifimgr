@@ -153,6 +153,10 @@ extern int			nl_insert(struct wifi_net **, struct wifi_net *);
 #define NL_INSERT_SEC_CHG	2
 extern int			nl_delete_list(struct wifi_net **);
 
+extern void			nl_order_by_ssid(struct wifi_net **);
+extern void			nl_order_by_bars(struct wifi_net **);
+extern void			nl_order_by_channel(struct wifi_net **);
+
 extern int			gui_changes;
 extern char			gui_response[];
 extern int			gui_init();

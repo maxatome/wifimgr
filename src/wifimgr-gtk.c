@@ -59,6 +59,11 @@ struct wifi_net *	gui_new_net;
 gpointer *		gui_new_net_table;
 int			gui_show_all_networks = 0;
 
+#define ORDER_BY_SSID		0
+#define ORDER_BY_BARS		1
+#define ORDER_BY_CHANNEL	2
+int			gui_networks_order = ORDER_BY_SSID;
+
 static GtkWidget *	gui_fill_network_table(GtkWidget * x, gpointer * gp);
 
 /*
@@ -85,6 +90,36 @@ gui_process_check_button(GtkWidget * w, gpointer * gp) {
 static void
 gui_process_check_button_show_all_networks(GtkWidget * w, gpointer * gp) {
 	gui_show_all_networks = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(w));
+	gui_fill_network_table(NULL, gp);
+}
+
+/*
+** order the networks depending on gui_networks_order value
+*/
+static void
+gui_order_networks() {
+	switch (gui_networks_order) {
+	case ORDER_BY_SSID:
+		nl_order_by_ssid(&nets);
+		break;
+
+	case ORDER_BY_BARS:
+		nl_order_by_bars(&nets);
+		break;
+
+	case ORDER_BY_CHANNEL:
+		nl_order_by_channel(&nets);
+		break;
+	}
+}
+
+/*
+** handle order by...
+*/
+static void
+gui_process_dropdown_order_by(GtkWidget * w, gpointer * gp) {
+	gui_networks_order = gtk_combo_box_get_active(GTK_COMBO_BOX(w));
+	gui_order_networks();
 	gui_fill_network_table(NULL, gp);
 }
 
@@ -275,6 +310,9 @@ gui_edit_new_network_done(GtkWidget * w, gpointer * gp) {
 			gui_message(buf, MSG_ERROR);
 			return;
 		}
+
+		/* order the freshly added entry */
+		gui_order_networks();
 
 		/* refresh main display */
 		gui_fill_network_table(NULL, gui_new_net_table);
@@ -1090,8 +1128,11 @@ gui_fill_network_table(GtkWidget * x, gpointer * gp) {
 	row++;
 	col = 0;
 
-	if (!nets)
+	if (!nets) {
 		nets = build_network_list(wifi_if);
+
+		gui_order_networks();
+	}
 
 	if (wifi_if_status == WIFI_IF_UP)
 		associated_net = ifconfig_associated_network(wifi_if);
@@ -1407,13 +1448,26 @@ gui_loop() {
 	g_signal_connect(GTK_OBJECT(w), "clicked", GTK_SIGNAL_FUNC(gui_rescan),
 	    (gpointer) &table);
 
+	w = gtk_label_new(gettext("Order by"));
+	gtk_misc_set_alignment(GTK_MISC(w), ALIGN_LEFT, ALIGN_MIDDLE);
+	gtk_box_pack_start(GTK_BOX(bottom_buttons), w, FALSE, FALSE, 5);
+
+	w = gtk_combo_box_new_text();
+	gtk_combo_box_append_text(GTK_COMBO_BOX(w), gettext("SSID"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(w), gettext("signal strength"));
+	gtk_combo_box_append_text(GTK_COMBO_BOX(w), gettext("channel"));
+	gtk_combo_box_set_active(GTK_COMBO_BOX(w), gui_networks_order);
+	g_signal_connect(G_OBJECT(w), "changed", G_CALLBACK(gui_process_dropdown_order_by),
+	    (gpointer) &table);
+	gtk_box_pack_start(GTK_BOX(bottom_buttons), w, FALSE, FALSE, 5);
+
 	w = gtk_check_button_new_with_label("Show all Networks");
 	if (gui_show_all_networks)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
 	g_signal_connect(G_OBJECT(w), "toggled", G_CALLBACK(gui_process_check_button_show_all_networks),
 	    (gpointer) &table);
-
 	gtk_box_pack_start(GTK_BOX(bottom_buttons), w, FALSE, FALSE, 5);
+
 	w = gtk_button_new_with_label(gettext("Close"));
 	g_signal_connect(GTK_OBJECT(w), "clicked", GTK_SIGNAL_FUNC(gui_exit), NULL);
 	gtk_box_pack_end(GTK_BOX(bottom_buttons), w, FALSE, FALSE, 5);
