@@ -76,16 +76,16 @@ gui_init(int * ac, char *** av) {
 	if (ok) {
 	  int		ch;
 	  struct option	opts[] = {
-	    { "order-by",      required_argument, NULL, 'o' },
-	    { "dont-show-all", no_argument,       NULL, 's' },
-	    { "help",          no_argument,       NULL, 'h' },
-	    { NULL,            0,                 NULL, 0 }
+	    { "order-by",         required_argument, NULL, 'o' },
+	    { "hide-unavailable", no_argument,       NULL, 'H' },
+	    { "help",             no_argument,       NULL, 'h' },
+	    { NULL,               0,                 NULL, 0 }
 	  };
 	  char *	order_by[] = {"ssid", "signal", "channel", NULL};
 
-	  while ((ch = getopt_long(*ac, *av, "o:sh", opts, NULL)) != -1) {
+	  while ((ch = getopt_long(*ac, *av, "o:Hh", opts, NULL)) != -1) {
 	    switch (ch) {
-	    case 's':
+	    case 'H':
 	      gui_show_all_networks = 0;
 	      break;
 
@@ -133,12 +133,27 @@ gui_process_check_button(GtkWidget * w, gpointer * gp) {
 }
 
 /*
-** handle "Show all Networks" check button
+** return the label of the "Show all"/"Hide unavailable" button
 */
-static void
-gui_process_check_button_show_all_networks(GtkWidget * w, gpointer * gp) {
-	gui_show_all_networks = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(w));
-	gui_fill_network_table(NULL, gp);
+static char *
+gui_hide_show_all_label() {
+  if (gui_show_all_networks)
+    return gettext("Hide unavailable");
+  return gettext("Show all");
+}
+
+/*
+** handle "Show all"/"Hide unavailable" button
+*/
+static GtkWidget *
+gui_hide_show_all(GtkWidget * w, gpointer * gp) {
+  gui_show_all_networks ^= 1;
+
+  gtk_button_set_label(GTK_BUTTON(w), gui_hide_show_all_label());
+
+  gui_fill_network_table(NULL, gp);
+
+  return *gp;
 }
 
 /*
@@ -1509,10 +1524,8 @@ gui_loop() {
 	    (gpointer) &table);
 	gtk_box_pack_start(GTK_BOX(bottom_buttons), w, FALSE, FALSE, 5);
 
-	w = gtk_check_button_new_with_label("Show all Networks");
-	if (gui_show_all_networks)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
-	g_signal_connect(G_OBJECT(w), "toggled", G_CALLBACK(gui_process_check_button_show_all_networks),
+	w = gtk_button_new_with_label(gui_hide_show_all_label());
+	g_signal_connect(GTK_OBJECT(w), "clicked", GTK_SIGNAL_FUNC(gui_hide_show_all),
 	    (gpointer) &table);
 	gtk_box_pack_start(GTK_BOX(bottom_buttons), w, FALSE, FALSE, 5);
 

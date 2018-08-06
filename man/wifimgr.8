@@ -36,8 +36,12 @@
 .Nd WiFi Networks Manager
 .Sh SYNOPSIS
 .Nm
-.Op Fl s
+.Op Fl H
 .Op Fl o Ar ssid|signal|channel
+.Op Ar GTK options
+.Nm
+.Op Fl Fl hide-unavailable
+.Op Fl Fl order-by Ar ssid|signal|channel
 .Op Ar GTK options
 .Sh DESCRIPTION
 .Nm
@@ -112,8 +116,8 @@ The options are as follows:
 .It Fl o Ar ssid|signal|channel , Fl Fl order-by Ar ssid|signal|channel
 Networks are respectively ordered by SSID (default), signal strength
 or channel.
-.It Fl s , Fl Fl dont-show-all
-Only display visible networks (all networks are displayed by default).
+.It Fl H , Fl Fl hide-unavailable
+Only display available networks (all networks are displayed by default).
 .El
 .Sh CONFIGURATION
 A network interface must be configured for WiFi use in
