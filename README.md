@@ -2,8 +2,9 @@
 
 Add some features to [wifimgr-1.11](http://opal.com/freebsd/ports/net-mgmt/wifimgr/):
 
-- new "Show all Networks" check box to display only visible networks or
-  available+recorded networks (by default displays available+recorded networks);
+- new button "Hide unavailable"/"Show all" button to display only
+  available networks or available+recorded networks (by default
+  displays available+recorded networks);
 - can now order networks by SSID (default), signal strength or
   channel;
 - `wifimgr` accepts some options:
