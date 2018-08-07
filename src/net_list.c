@@ -38,9 +38,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-static int (*_nl_sort_specific_compar)(struct wifi_net * a, struct wifi_net * b);
+static int (*_nl_sort_specific_compar)(struct wifi_net *, struct wifi_net *);
+
 static int
-_nl_sort_generic_compar(const void *a, const void *b) {
+_nl_sort_generic_compar(const void * a, const void * b) {
 	return _nl_sort_specific_compar(*(struct wifi_net **)a, *(struct wifi_net **)b);
 }
 

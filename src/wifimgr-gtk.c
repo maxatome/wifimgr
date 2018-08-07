@@ -74,48 +74,48 @@ int
 gui_init(int * ac, char *** av) {
 	int ok = gtk_init_check(ac, av);
 	if (ok) {
-	  int		ch;
-	  struct option	opts[] = {
-	    { "order-by",         required_argument, NULL, 'o' },
-	    { "hide-unavailable", no_argument,       NULL, 'H' },
-	    { "help",             no_argument,       NULL, 'h' },
-	    { NULL,               0,                 NULL, 0 }
-	  };
-	  char *	order_by[] = {"ssid", "signal", "channel", NULL};
+		int		ch;
+		struct option	opts[] = {
+			{ "order-by",		required_argument,	NULL,	'o' },
+			{ "hide-unavailable",	no_argument,		NULL,	'H' },
+			{ "help",		no_argument,		NULL,	'h' },
+			{ NULL }
+		};
+		char *		order_by[] = {"ssid", "signal", "channel", NULL};
 
-	  while ((ch = getopt_long(*ac, *av, "o:Hh", opts, NULL)) != -1) {
-	    switch (ch) {
-	    case 'H':
-	      gui_show_all_networks = 0;
-	      break;
+		while ((ch = getopt_long(*ac, *av, "o:Hh", opts, NULL)) != -1) {
+			switch (ch) {
+			case 'H':
+				gui_show_all_networks = 0;
+				break;
 
-	    case 'o':
-	      ok = 0;
-	      for (ch = 0; order_by[ch] != NULL; ch++) {
-		if (strcasecmp(order_by[ch], optarg) == 0) {
-		  ok = 1;
-		  gui_networks_order = ch;
-		  break;
+			case 'o':
+				ok = 0;
+				for (ch = 0; order_by[ch] != NULL; ch++) {
+					if (strcasecmp(order_by[ch], optarg) == 0) {
+						ok = 1;
+						gui_networks_order = ch;
+						break;
+					}
+				}
+				if (!ok) {
+					fprintf(stderr,
+					    gettext("wifimgr: order-by `%s' not recognized\n"),
+					    optarg);
+					return 0;
+				}
+				break;
+
+			default:
+				fprintf(stderr, gettext("usage: wifimgr [-hs] [-o ssid|signal|channel] [GTK options]\n"));
+				return 0;
+			}
 		}
-	      }
-	      if (!ok) {
-		fprintf(stderr,
-		    gettext("wifimgr: order-by `%s' not recognized\n"),
-		    optarg);
-		return 0;
-	      }
-	      break;
 
-	    default:
-	      fprintf(stderr, gettext("usage: wifimgr [-hs] [-o ssid|signal|channel] [GTK options]\n"));
-	      return 0;
-	    }
-	  }
+		*ac -= optind;
+		*av += optind;
 
-	  *ac -= optind;
-	  *av += optind;
-
-	  return 1;
+		return 1;
 	}
 
 	fprintf(stderr, gettext("wifimgr: cannot open display\n"));
@@ -137,9 +137,9 @@ gui_process_check_button(GtkWidget * w, gpointer * gp) {
 */
 static char *
 gui_hide_show_all_label() {
-  if (gui_show_all_networks)
-    return gettext("Hide unavailable");
-  return gettext("Show all");
+	if (gui_show_all_networks)
+		return gettext("Hide unavailable");
+	return gettext("Show all");
 }
 
 /*
@@ -147,13 +147,13 @@ gui_hide_show_all_label() {
 */
 static GtkWidget *
 gui_hide_show_all(GtkWidget * w, gpointer * gp) {
-  gui_show_all_networks ^= 1;
+	gui_show_all_networks ^= 1;
 
-  gtk_button_set_label(GTK_BUTTON(w), gui_hide_show_all_label());
+	gtk_button_set_label(GTK_BUTTON(w), gui_hide_show_all_label());
 
-  gui_fill_network_table(NULL, gp);
+	gui_fill_network_table(NULL, gp);
 
-  return *gp;
+	return *gp;
 }
 
 /*
