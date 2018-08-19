@@ -87,6 +87,34 @@ gui_process_check_button(GtkWidget * w, gpointer * gp) {
 }
 
 /*
+** handle Shift-click on check_button to select/unselect all smae SSID
+** at the same time
+*/
+static gboolean
+gui_process_check_button_press(GtkWidget * w, GdkEvent * event, gpointer * gp) {
+	GdkEventButton *	but_event = (GdkEventButton*)event;
+
+	/* If Shift is pressed, intercept the Click-1 */
+	if (but_event->state & GDK_SHIFT_MASK && but_event->button == 1) {
+		struct wifi_net *	net = (struct wifi_net *)gp;
+
+		/* Should always be true */
+		if (net->w_checkbox != NULL) {
+			char *	ssid = net->sup_ssid;
+			int 	active = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(net->w_checkbox)) ^ 1;
+
+			for (net = nets; net; net = net->wn_next) {
+				if (net->w_checkbox != NULL && strcmp(ssid, net->sup_ssid) == 0)
+					gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(net->w_checkbox), active);
+			}
+			gui_changes++;
+		}
+		return TRUE;
+	}
+	return FALSE;
+}
+
+/*
 ** return the label of the "Show all"/"Hide unavailable" button
 */
 static char *
@@ -1163,10 +1191,13 @@ gui_fill_network_table(GtkWidget * x, gpointer * gp) {
 		col = 0;
 
 		w = gtk_check_button_new();
+		net->w_checkbox = w;
 		if (net->wn_enabled)
 			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), TRUE);
 		g_signal_connect(G_OBJECT(w), "toggled", G_CALLBACK(gui_process_check_button),
 		    (gpointer) &(net->wn_enabled));
+		g_signal_connect(G_OBJECT(w), "button-press-event", G_CALLBACK(gui_process_check_button_press),
+		    (gpointer)net);
 		gtk_table_attach(GTK_TABLE(table), w, col, col+1, row, row+1,
 		    GTK_EXPAND|GTK_FILL, GTK_FILL, 0, 0);
 		if (associated_net &&

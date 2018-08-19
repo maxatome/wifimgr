@@ -73,6 +73,7 @@ struct wifi_net {
 
 	int			wn_show_password;
 	/* next four are really GtkWidget * pointers */
+	void *			w_checkbox;
 	void *			w_wn_key;
 	void *			w_sup_password;
 	void *			w_sup_private_key_passwd;

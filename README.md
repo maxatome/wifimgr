@@ -2,6 +2,8 @@
 
 Add some features to [wifimgr-1.11](http://opal.com/freebsd/ports/net-mgmt/wifimgr/):
 
+- Shift-click-1 on a network checkbox select/unselect all networks with
+  the same SSID;
 - new button "Hide unavailable"/"Show all" button to display only
   available networks or available+recorded networks (by default
   displays available+recorded networks);
