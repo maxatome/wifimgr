@@ -1099,8 +1099,12 @@ main(int argc, char ** argv) {
 
 	/* open display */
 	if (!gui_init(&argc, &argv)) {
+		fprintf(stderr, gettext("wifimgr: cannot open display\n"));
 		exit(1);
 	}
+
+	/* load config from ~/.wifimgr */
+	gui_load_config();
 
 	/* open channel to setuid backend */
 	wifimgrsu_init();
@@ -1118,6 +1122,9 @@ main(int argc, char ** argv) {
 	wifi_if_status = ifconfig_intf_status(wifi_if);
 
 	gui_loop();
+
+	/* save config in ~/.wifimgr */
+	gui_save_config();
 
 	exit(0);
 }

@@ -39,6 +39,7 @@
 #include <gtk/gtk.h>
 #include <string.h>
 #include <getopt.h>
+#include <pwd.h>
 
 #ifndef WITHOUT_NLS
 #include <libintl.h>
@@ -72,54 +73,7 @@ static GtkWidget *	gui_fill_network_table(GtkWidget * x, gpointer * gp);
 */
 int
 gui_init(int * ac, char *** av) {
-	int ok = gtk_init_check(ac, av);
-	if (ok) {
-		int		ch;
-		struct option	opts[] = {
-			{ "order-by",		required_argument,	NULL,	'o' },
-			{ "hide-unavailable",	no_argument,		NULL,	'H' },
-			{ "help",		no_argument,		NULL,	'h' },
-			{ NULL }
-		};
-		char *		order_by[] = {"ssid", "signal", "channel", NULL};
-
-		while ((ch = getopt_long(*ac, *av, "o:Hh", opts, NULL)) != -1) {
-			switch (ch) {
-			case 'H':
-				gui_show_all_networks = 0;
-				break;
-
-			case 'o':
-				ok = 0;
-				for (ch = 0; order_by[ch] != NULL; ch++) {
-					if (strcasecmp(order_by[ch], optarg) == 0) {
-						ok = 1;
-						gui_networks_order = ch;
-						break;
-					}
-				}
-				if (!ok) {
-					fprintf(stderr,
-					    gettext("wifimgr: order-by `%s' not recognized\n"),
-					    optarg);
-					return 0;
-				}
-				break;
-
-			default:
-				fprintf(stderr, gettext("usage: wifimgr [-hs] [-o ssid|signal|channel] [GTK options]\n"));
-				return 0;
-			}
-		}
-
-		*ac -= optind;
-		*av += optind;
-
-		return 1;
-	}
-
-	fprintf(stderr, gettext("wifimgr: cannot open display\n"));
-	return 0;
+	return gtk_init_check(ac, av);
 }
 
 /*
@@ -1543,4 +1497,111 @@ gui_loop() {
 	gtk_widget_show_all(window);
 
 	gtk_main();
+}
+
+/*
+** config filename
+*/
+static char *
+gui_config_filename() {
+	static char *		config_filename;
+
+	if (config_filename == NULL) {
+		char *		home = getenv("HOME");
+
+		if (home == NULL || *home == '\0') {
+			struct passwd *		pwd = getpwuid(getuid());
+
+			if (pwd == NULL)
+				return NULL;
+
+			home = pwd->pw_dir;
+		}
+
+		asprintf(&config_filename, "%s/.wifimgr", home);
+	}
+
+	return config_filename;
+}
+
+/*
+** mix all config params and return a unique number. Used to know
+** whether any config param has been modified or not.
+*/
+static int
+gui_config_state() {
+	return gui_networks_order | (gui_show_all_networks << 3);
+}
+
+/*
+** load config from ~/.wifimgr
+*/
+static int gui_loaded_config_state;
+void
+gui_load_config() {
+  	char *			filename = gui_config_filename();
+	FILE *			fp;
+	char			line[1024];
+	char			param[8];
+
+	if (filename == NULL)
+		return;
+
+	if ((fp = fopen(filename, "r")) == NULL)
+	  	return;
+
+	while(fgets(line, sizeof(line), fp) != NULL) {
+		if (sscanf(line, "order-by %7s\n", param)) {
+			if (strcmp(param, "ssid") == 0)
+				gui_networks_order = ORDER_BY_SSID;
+			else if (strcmp(param, "signal") == 0)
+				gui_networks_order = ORDER_BY_BARS;
+			else if (strcmp(param, "channel") == 0)
+				gui_networks_order = ORDER_BY_CHANNEL;
+		} else if (strcmp(line, "hide-unavailable\n") == 0) {
+			gui_show_all_networks = 0;
+		}
+	}
+
+	fclose(fp);
+
+	/* used by gui_save_config() to know if the config has changed */
+	gui_loaded_config_state = gui_config_state();
+}
+
+/*
+** save config in ~/.wifimgr
+*/
+void
+gui_save_config() {
+	if (gui_loaded_config_state != gui_config_state()) {
+		char *			filename = gui_config_filename();
+		FILE *			fp;
+		char *			order_by;
+
+		if (filename == NULL)
+			return;
+
+		switch (gui_networks_order) {
+		case ORDER_BY_BARS:
+			order_by = "signal";
+			break;
+		case ORDER_BY_CHANNEL:
+			order_by = "channel";
+			break;
+		default: // ORDER_BY_SSID
+			order_by = "ssid";
+			break;
+		}
+
+		if ((fp = fopen(filename, "w")) == NULL)
+		  	return;
+
+		fprintf(fp, "order-by %s\n", order_by);
+
+		if (gui_show_all_networks == 0)
+			fputs("hide-unavailable\n", fp);
+
+		fclose(fp);
+	}
 }

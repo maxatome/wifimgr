@@ -171,3 +171,6 @@ extern int			gui_message(const char *, int);
 #define MSG_RESPONSE_YES	2
 #define MSG_RESPONSE_NO		3
 extern void			gui_loop();
+
+extern void			gui_load_config();
+extern void			gui_save_config();

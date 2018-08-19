@@ -7,9 +7,5 @@ Add some features to [wifimgr-1.11](http://opal.com/freebsd/ports/net-mgmt/wifim
   displays available+recorded networks);
 - can now order networks by SSID (default), signal strength or
   channel;
-- `wifimgr` accepts some options:
-  - `-o sorting-criteria`, `--order-by sorting-criteria`
-    - `sorting-criteria` defaults to `ssid` but can be `signal` or `channel`,
-  - `-H`, `--hide-unavailable`
-	- show only available networks,
+- `wifimgr` automatically loads/saves user choices in `~/.wifimgr`;
 - correct some clang warnings.
