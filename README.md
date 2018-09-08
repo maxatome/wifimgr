@@ -1,5 +1,7 @@
 # FreeBSD wifimgr
 
+**All the following changes have been integrated in wifimgr-1.12, except Schift-click1 feature replaced by new behavior of "Any BSSID" (folding of all same-SSID networks into one line).**
+
 Add some features to [wifimgr-1.11](http://opal.com/freebsd/ports/net-mgmt/wifimgr/):
 
 - Shift-click-1 on a network checkbox select/unselect all networks with
